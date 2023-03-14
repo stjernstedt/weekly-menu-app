@@ -1,15 +1,11 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import DishesGrid from './components/DishesGrid';
+import MenuBuilder from './components/MenuBuilder'
 
 const url = 'http://127.0.0.1:3001/dishes/';
 
-// const router = {
-//   '/dishes': () => <DishesGrid />
-// }
-
 const App = () => {
-
   const [dishes, setDishes] = useState([]);
 
   const fetchDishes = async (options) => {
@@ -21,13 +17,18 @@ const App = () => {
     setDishes(data)
   }
 
+  const onClick = (ingredient) => {
+    fetchDishes(ingredient);
+  }
+
   useEffect(() => {
     fetchDishes();
   }, [])
 
   return (
     <div className="App">
-      <DishesGrid dishes={dishes}></DishesGrid>
+      <DishesGrid dishes={dishes} onClick={onClick} />
+      <MenuBuilder />
     </div >
   );
 }

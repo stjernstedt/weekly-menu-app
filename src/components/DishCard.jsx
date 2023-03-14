@@ -1,7 +1,7 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
 
-const DishCard = ({ dish: { _id, title, ingredients } }) => {
+const DishCard = ({ dish: { _id, title, ingredients }, onClick }) => {
 
 	return (
 		<Grid item xs={2}>
@@ -10,16 +10,17 @@ const DishCard = ({ dish: { _id, title, ingredients } }) => {
 					<Typography variant="h5">
 						{title}
 					</Typography>
-					<Typography variant="h7">
+					<Typography variant="h8">
 						Ingredients: {ingredients.map(ingredient => {
-							return ([
-								<a key={ingredient} href={'/dishes/' + ingredient}>{ingredient}</a>,
-								', '
-							]);
+							return (
+								<Button key={ingredient} onClick={() => { onClick(ingredient) }}>{ingredient}</Button>
+							);
 						})}
 					</Typography>
-
 				</CardContent>
+				<CardActions>
+					<Button>ADD DISH</Button>
+				</CardActions>
 			</Card>
 
 		</Grid >

@@ -8,6 +8,7 @@ import MenuBuilder from './components/MenuBuilder'
 const url = process.env.REACT_APP_SERVER_URL
 
 const App = () => {
+  document.title = 'Weekly Dish';
   const [dishes, setDishes] = useState([]);
 
   const fetchDishes = async (options) => {

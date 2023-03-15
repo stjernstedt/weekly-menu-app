@@ -4,8 +4,8 @@ import DishesGrid from './components/DishesGrid';
 import MenuBuilder from './components/MenuBuilder'
 
 // const url = 'http://127.0.0.1:3001/dishes/';
-// const url = 'https://pleasant-erin-pig.cyclic.app/dishes'
-const url = process.env.REACT_APP_SERVER_URL
+const url = 'https://pleasant-erin-pig.cyclic.app/dishes'
+// const url = process.env.REACT_APP_SERVER_URL
 
 const App = () => {
   document.title = 'Weekly Dish';

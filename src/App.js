@@ -13,7 +13,7 @@ const App = () => {
 
   const fetchDishes = async (options) => {
     let response;
-    options ? response = await fetch(url + options)
+    options ? response = await fetch(url + '/' + options)
       : response = await fetch(url);
     const data = await response.json();
 

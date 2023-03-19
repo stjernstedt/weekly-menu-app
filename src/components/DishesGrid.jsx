@@ -1,15 +1,15 @@
 import { Button, Grid } from '@mui/material';
 import DishCard from './DishCard.jsx';
 
-const DishesGrid = ({ dishes, onClick }) => {
+const DishesGrid = ({ dishes, updateDishes, currentDay }) => {
 	return (
 		<Grid container spacing={5} justifyContent={'center'} marginTop={5}>
 			{dishes?.length > 0
 				? (
 					<>
-						<Button onClick={() => { onClick() }}>Show all</Button>
+						<Button onClick={() => { updateDishes() }}>Show all</Button>
 						{dishes.map((dish) => (
-							<DishCard dish={dish} key={dish._id} onClick={onClick} />
+							<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} />
 						))}
 					</>
 				) : (

@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import DishesGrid from './components/DishesGrid';
 import MenuBuilder from './components/MenuBuilder'
 
@@ -10,6 +10,8 @@ const url = process.env.REACT_APP_SERVER_URL
 const App = () => {
   document.title = 'Weekly Dish';
   const [dishes, setDishes] = useState([]);
+  // const [currentDay, setCurrentDay] = useState(new Date());
+  const [currentDay, setCurrentDay] = useState(1);
 
   const fetchDishes = async (options) => {
     let response;
@@ -20,7 +22,7 @@ const App = () => {
     setDishes(data)
   }
 
-  const onClick = (ingredient) => {
+  const updateDishes = (ingredient) => {
     fetchDishes(ingredient);
   }
 
@@ -28,10 +30,11 @@ const App = () => {
     fetchDishes();
   }, [])
 
+
   return (
     <div className="App">
-      <DishesGrid dishes={dishes} onClick={onClick} />
-      <MenuBuilder />
+      <DishesGrid dishes={dishes} updateDishes={updateDishes} currentDay={currentDay} />
+      <MenuBuilder setCurrentDay={setCurrentDay} />
     </div >
   );
 }

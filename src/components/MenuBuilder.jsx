@@ -2,7 +2,7 @@ import { Button, Grid } from "@mui/material";
 import { useState } from "react";
 
 
-const MenuBuilder = ({ setCurrentDay }) => {
+const MenuBuilder = ({ setCurrentDay, toggleDrawer }) => {
 	const months = ['January', 'February', 'Mars', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	const [showDate, setShowDate] = useState(new Date());
 
@@ -15,6 +15,7 @@ const MenuBuilder = ({ setCurrentDay }) => {
 	const selectDay = (day) => {
 		let selectedDate = new Date(showDate.getFullYear(), showDate.getMonth(), day + 1);
 		setCurrentDay(selectedDate);
+		toggleDrawer(true);
 	}
 
 	return (
@@ -30,7 +31,7 @@ const MenuBuilder = ({ setCurrentDay }) => {
 					[...Array(days)].map((e, i) => {
 						return <Grid key={i} padding={1} item xs={1}>
 							{/* <Button sx={{ height: '4vw', width: '100%' }} variant='outlined' onClick={() => selectDay(i)}> */}
-							<Button sx={{ height: '4vw', width: '100%' }} variant='outlined' onClick={() => setCurrentDay(i + 1)}>
+							<Button sx={{ height: '4vw', width: '100%' }} variant='outlined' onClick={() => selectDay(i)}>
 								<Grid container>
 									<Grid item xs={1}>
 										<span>{i + 1}</span>

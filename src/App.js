@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import DishesGrid from './components/DishesGrid';
 import MenuBuilder from './components/MenuBuilder'
 import { Drawer } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 
 // const url = 'http://127.0.0.1:3001/dishes/';
 const url = process.env.REACT_APP_SERVER_URL
@@ -37,12 +39,15 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      <Drawer anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
-        <DishesGrid dishes={dishes} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} />
-      </Drawer>
-      <MenuBuilder setCurrentDay={setCurrentDay} toggleDrawer={toggleDrawer} />
-    </div >
+    <LocalizationProvider dateAdapter={AdapterMoment}>
+      <div className="App">
+        <Drawer anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
+          <DishesGrid dishes={dishes} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} />
+        </Drawer>
+        <MenuBuilder setCurrentDay={setCurrentDay} toggleDrawer={toggleDrawer} />
+        {/* <MenuBuilder /> */}
+      </div >
+    </LocalizationProvider>
   );
 }
 

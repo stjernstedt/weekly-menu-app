@@ -1,0 +1,8 @@
+.dayButton {
+	height: 4vw;
+	width: 100%;
+}
+
+.dayButtonPreviousMonth {
+	background-color: lightgray !important;
+}

@@ -1,19 +1,46 @@
+import { useState, useEffect } from "react";
 import { Button, Grid } from "@mui/material";
-import { useState } from "react";
-import './Calendar.jsx';
+import { Drawer } from '@mui/material';
+import DishesGrid from './DishesGrid.jsx';
 import Calendar from "./Calendar.jsx";
 import './MenuBuilder.css';
 
-const MenuBuilder = ({ setCurrentDay, toggleDrawer }) => {
+const url = process.env.REACT_APP_SERVER_URL
+
+const MenuBuilder = () => {
+	const [dishes, setDishes] = useState([]);
+	const [currentDay, setCurrentDay] = useState(1);
+	const [drawerState, setDrawerState] = useState(false);
 
 	const months = ['January', 'February', 'Mars', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	// const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const [showDate, setShowDate] = useState(new Date(new Date().getFullYear(), new Date().getMonth(), 1));
 
+	const fetchDishes = async (options) => {
+		let response;
+		options ? response = await fetch(url + '/' + options)
+			: response = await fetch(url);
+		const data = await response.json();
+
+		setDishes(data)
+	}
+
+	const updateDishes = (ingredient) => {
+		fetchDishes(ingredient);
+	}
+
+	useEffect(() => {
+		fetchDishes();
+	}, [])
+
 	const selectDay = (day) => {
 		let selectedDate = new Date(showDate.getFullYear(), showDate.getMonth(), day);
 		setCurrentDay(selectedDate);
 		toggleDrawer(true);
+	}
+
+	const toggleDrawer = (open) => {
+		setDrawerState(open);
 	}
 
 	// const drawFirstDayOfWeeks = (date) => {
@@ -37,6 +64,10 @@ const MenuBuilder = ({ setCurrentDay, toggleDrawer }) => {
 			display: 'flex',
 			justifyContent: 'center'
 		}}>
+			<Drawer anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
+				<DishesGrid dishes={dishes} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} />
+			</Drawer>
+
 			<Grid container width={'70vw'} columns={7} marginTop={5}>
 				<Grid item xs={7} align={'center'}>
 					<h2>

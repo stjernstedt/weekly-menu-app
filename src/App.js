@@ -1,10 +1,8 @@
 import './App.css';
-import MenuBuilder from './components/MenuBuilder'
+import MenuBuilder from './pages/MenuBuilder'
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-// const url = 'http://127.0.0.1:3001/dishes/';
 
 const router = createBrowserRouter([
   {
@@ -16,8 +14,6 @@ const router = createBrowserRouter([
 
 const App = () => {
   document.title = 'Weekly Dish';
-
-  // const routeResult = useRoutes(routes)
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>

@@ -22,7 +22,6 @@ const CreateRecipe = () => {
 		setTitle(e.target.value);
 	}
 
-	// does not post body
 	const postDish = (dish) => {
 		fetch(url, {
 			method: 'POST',
@@ -46,7 +45,7 @@ const CreateRecipe = () => {
 					'ingredients': ingredients
 				}
 				postDish(dish);
-				navigate('/');
+				navigate('/browserecipes');
 				break;
 			default:
 				break;

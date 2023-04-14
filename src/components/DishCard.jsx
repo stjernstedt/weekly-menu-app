@@ -23,7 +23,11 @@ const DishCard = ({ dish: { _id, title, ingredients }, updateDishes, currentDay,
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<Button onClick={() => { addDish(currentDay); toggleDrawer(false) }}>ADD DISH</Button>
+					{
+						currentDay ?
+							(<Button onClick={() => { addDish(currentDay); toggleDrawer(false) }}>ADD DISH</Button>)
+							: null
+					}
 				</CardActions>
 			</Card>
 

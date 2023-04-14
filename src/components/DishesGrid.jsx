@@ -31,9 +31,12 @@ const DishesGrid = ({ currentDay, toggleDrawer }) => {
 				? (
 					<>
 						<Button onClick={() => { updateDishes() }}>Show all</Button>
-						{dishes.map((dish) => (
+						{currentDay && toggleDrawer ? dishes.map((dish) => (
 							<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} />
-						))}
+						)) :
+							dishes.map((dish) => (
+								<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} />
+							))}
 					</>
 				) : (
 					<div className='empty'>

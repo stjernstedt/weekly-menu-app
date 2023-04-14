@@ -14,6 +14,7 @@ const MenuBuilder = () => {
 	const [showDate, setShowDate] = useState(new Date(new Date().getFullYear(), new Date().getMonth(), 1));
 
 	const selectDay = (day) => {
+		// BUG previous month's day is selected when clicking on date that appears twice
 		let selectedDate = new Date(showDate.getFullYear(), showDate.getMonth(), day);
 		setCurrentDay(selectedDate);
 		toggleDrawer(true);

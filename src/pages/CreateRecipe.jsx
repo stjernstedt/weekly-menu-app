@@ -4,8 +4,8 @@ import SaveIcon from '@mui/icons-material/Save';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// const url = process.env.REACT_APP_SERVER_URL;
-const url = 'http://127.0.0.1:3001/dishes/';
+const url = process.env.REACT_APP_SERVER_URL;
+// const url = 'http://127.0.0.1:3001/dishes/';
 
 const CreateRecipe = () => {
 	const navigate = useNavigate();

@@ -46,6 +46,7 @@ const CreateRecipe = () => {
 					'ingredients': ingredients
 				}
 				postDish(dish);
+				navigate('/');
 				break;
 			default:
 				break;

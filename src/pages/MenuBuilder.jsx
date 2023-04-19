@@ -6,17 +6,15 @@ import Calendar from "../components/Calendar.jsx";
 import './MenuBuilder.css';
 
 const MenuBuilder = () => {
-	const [currentDay, setCurrentDay] = useState(1);
+	const [currentDay, setCurrentDay] = useState(new Date());
 	const [drawerState, setDrawerState] = useState(false);
 
 	const months = ['January', 'February', 'Mars', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	// const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const [showDate, setShowDate] = useState(new Date(new Date().getFullYear(), new Date().getMonth(), 1));
 
-	const selectDay = (day) => {
-		// BUG previous month's day is selected when clicking on date that appears twice
-		let selectedDate = new Date(showDate.getFullYear(), showDate.getMonth(), day);
-		setCurrentDay(selectedDate);
+	const selectDay = (date) => {
+		setCurrentDay(date);
 		toggleDrawer(true);
 	}
 

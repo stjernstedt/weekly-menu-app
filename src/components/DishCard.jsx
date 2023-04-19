@@ -3,7 +3,7 @@ import React from "react";
 
 const DishCard = ({ dish: { _id, title, ingredients }, updateDishes, currentDay, toggleDrawer }) => {
 	const addDish = (day) => {
-		let test = document.getElementById('day' + day.getDate());
+		let test = document.getElementById(day);
 		test.textContent = title;
 	}
 

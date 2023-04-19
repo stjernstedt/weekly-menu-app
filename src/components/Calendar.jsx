@@ -9,14 +9,14 @@ const Calendar = ({ date, onClickCallback }) => {
 	let days = getDaysInMonth(date.getFullYear(), date.getMonth());
 	let jsx = [];
 
-	const dayJsx = (day) => {
+	const dayJsx = (date) => {
 		return (
 			<Grid container>
 				<Grid item xs={1}>
-					<span>{day}</span>
+					<span>{date.getDate()}</span>
 				</Grid>
 				<Grid item xs={12}>
-					<span id={'day' + (day)}></span>
+					<span id={date}></span>
 				</Grid>
 			</Grid>
 		)
@@ -35,10 +35,11 @@ const Calendar = ({ date, onClickCallback }) => {
 
 		for (let i = 0; i < daysToLoop; i++) {
 			let day = monthBeforeDays - i;
+			let callbackDate = new Date(date.getFullYear(), date.getMonth() - 1, + day)
 			jsx.unshift(
 				<Grid item key={'' + date.getFullYear() + (date.getMonth() - 1) + day} padding={1} xs={1}>
-					<Button className={previousMonthClass} variant='outlined' onClick={() => onClickCallback(day)}>
-						{dayJsx(day)}
+					<Button className={previousMonthClass} variant='outlined' onClick={() => onClickCallback(callbackDate)}>
+						{dayJsx(callbackDate)}
 					</Button>
 				</Grid>
 			);
@@ -47,10 +48,11 @@ const Calendar = ({ date, onClickCallback }) => {
 
 	// render month's days
 	for (let i = 1; i <= days; i++) {
+		let callbackDate = new Date(date.getFullYear(), date.getMonth(), + i)
 		jsx.push(
 			<Grid item key={'' + date.getFullYear() + (date.getMonth()) + i} padding={1} xs={1}>
-				<Button className={monthClass} variant='outlined' onClick={() => onClickCallback(i)}>
-					{dayJsx(i)}
+				<Button className={monthClass} variant='outlined' onClick={() => onClickCallback(callbackDate)}>
+					{dayJsx(callbackDate)}
 				</Button>
 			</Grid>
 		);

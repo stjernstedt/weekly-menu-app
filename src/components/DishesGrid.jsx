@@ -5,7 +5,7 @@ import DishCard from './DishCard.jsx';
 // const url = 'http://127.0.0.1:3001/dishes/';
 const url = process.env.REACT_APP_SERVER_URL
 
-const DishesGrid = ({ currentDay, toggleDrawer }) => {
+const DishesGrid = ({ currentDay, toggleDrawer, addDishCallback }) => {
 	const [dishes, setDishes] = useState([]);
 
 	const fetchDishes = async (options) => {
@@ -32,7 +32,7 @@ const DishesGrid = ({ currentDay, toggleDrawer }) => {
 					<>
 						<Button onClick={() => { updateDishes() }}>Show all</Button>
 						{currentDay && toggleDrawer ? dishes.map((dish) => (
-							<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} />
+							<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDishCallback} />
 						)) :
 							dishes.map((dish) => (
 								<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} />

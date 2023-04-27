@@ -3,9 +3,9 @@ import { Button, Grid } from "@mui/material";
 import { Drawer } from '@mui/material';
 import DishesGrid from '../components/DishesGrid';
 import Calendar from "../components/Calendar.jsx";
-import './MenuBuilder.css';
+import './CreateMenu.css';
 
-const MenuBuilder = () => {
+const CreateMenu = () => {
 	const [currentDay, setCurrentDay] = useState(new Date());
 	const [drawerState, setDrawerState] = useState(false);
 	const [currentMenu, setCurrentMenu] = useState({});
@@ -48,7 +48,8 @@ const MenuBuilder = () => {
 	return (
 		<div style={{
 			display: 'flex',
-			justifyContent: 'center'
+			justifyContent: 'center',
+			marginTop: '10vh'
 		}}>
 			<Drawer anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
 				<DishesGrid currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDish} />
@@ -68,4 +69,4 @@ const MenuBuilder = () => {
 	);
 }
 
-export default MenuBuilder;
+export default CreateMenu;

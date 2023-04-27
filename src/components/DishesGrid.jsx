@@ -26,7 +26,7 @@ const DishesGrid = ({ currentDay, toggleDrawer, addDishCallback }) => {
 	}, [])
 
 	return (
-		<Grid container spacing={5} justifyContent={'center'} marginTop={5}>
+		<Grid container spacing={5} justifyContent={'center'} marginTop={'10vh'}>
 			{dishes?.length > 0
 				? (
 					<>

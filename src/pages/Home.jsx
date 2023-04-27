@@ -1,10 +1,9 @@
 import { Container, Paper, Stack, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
 
-const buttonStyle = {
-	width: '10vw',
-	height: '60px',
-}
+// const buttonStyle = {
+// 	width: '10vw',
+// 	height: '60px',
+// }
 
 const Home = (props) => {
 
@@ -12,7 +11,7 @@ const Home = (props) => {
 		<Container maxWidth='lg' >
 			<Stack marginTop={'20vh'} direction='row' justifyContent='center'>
 				<Paper sx={{ padding: '100px 20px', borderRadius: '100px' }} elevation={5}>
-					<Typography variant='h1'>Weekly Menu Builder</Typography>
+					<Typography variant='h1'>Weekly Menu</Typography>
 				</Paper>
 			</Stack>
 		</Container >

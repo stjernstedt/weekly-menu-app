@@ -27,6 +27,28 @@ const CreateMenu = () => {
 		let tempMenu = currentMenu;
 		tempMenu[currentDay] = dish;
 		setCurrentMenu(tempMenu);
+		printMenu(currentMenu);
+	}
+
+	//BUG off by one
+	// const calculateWeek = (date) => {
+	// 	let year = new Date(date.getFullYear(), 0, 1);
+	// 	let days = Math.floor((date - year) / (24 * 60 * 60 * 1000));
+	// 	let week = Math.ceil((date.getDay() + 1 + days) / 7);
+	// 	console.log(week);
+	// }
+
+	const printMenu = (menu) => {
+		//TODO present some kind of menu
+		let weeks = {};
+		Object.keys(menu).forEach((key) => {
+			let tmpdate = new Date(key);
+			let weekstartDiff = tmpdate.getDay() === 0 ? 6 : tmpdate.getDay() - 1;
+			let weekstartDate = new Date(tmpdate.getFullYear(), tmpdate.getMonth(), tmpdate.getDate() - weekstartDiff);
+			if (!weeks[weekstartDate]) weeks[weekstartDate] = [];
+			weeks[weekstartDate].push(menu[key]);
+		});
+		console.log(weeks);
 	}
 
 	// const drawFirstDayOfWeeks = (date) => {

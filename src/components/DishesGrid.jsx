@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mui/material';
+import { Button, CircularProgress, Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import DishCard from './DishCard.jsx';
 
@@ -40,7 +40,8 @@ const DishesGrid = ({ currentDay, toggleDrawer, addDishCallback }) => {
 					</>
 				) : (
 					<div className='empty'>
-						<h2>No dishes found</h2>
+						<CircularProgress />
+						{/* <h2>No dishes found</h2> */}
 					</div>
 				)}
 		</Grid>

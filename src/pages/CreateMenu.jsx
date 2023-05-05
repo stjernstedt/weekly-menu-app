@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { Button, Grid } from "@mui/material";
+import { Button, Dialog, Grid, Typography } from "@mui/material";
 import { Drawer } from '@mui/material';
 import DishesGrid from '../components/DishesGrid';
 import Calendar from "../components/Calendar.jsx";
 import './CreateMenu.css';
+import MenuDialog from "../components/MenuDialog";
 
 const CreateMenu = () => {
 	const [currentDay, setCurrentDay] = useState(new Date());
 	const [drawerState, setDrawerState] = useState(false);
 	const [currentMenu, setCurrentMenu] = useState({});
 	const [showDate, setShowDate] = useState(new Date(new Date().getFullYear(), new Date().getMonth(), 1));
+	const [open, setOpen] = useState(false);
+	const [weeks, setWeeks] = useState({});
 
 	const months = ['January', 'February', 'Mars', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 	// const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -27,7 +30,6 @@ const CreateMenu = () => {
 		let tempMenu = currentMenu;
 		tempMenu[currentDay] = dish;
 		setCurrentMenu(tempMenu);
-		printMenu(currentMenu);
 	}
 
 	//BUG off by one
@@ -39,16 +41,20 @@ const CreateMenu = () => {
 	// }
 
 	const printMenu = (menu) => {
-		//TODO present some kind of menu
-		let weeks = {};
+		let tmpWeeks = {};
 		Object.keys(menu).forEach((key) => {
 			let tmpdate = new Date(key);
 			let weekstartDiff = tmpdate.getDay() === 0 ? 6 : tmpdate.getDay() - 1;
 			let weekstartDate = new Date(tmpdate.getFullYear(), tmpdate.getMonth(), tmpdate.getDate() - weekstartDiff);
-			if (!weeks[weekstartDate]) weeks[weekstartDate] = [];
-			weeks[weekstartDate].push(menu[key]);
+			if (!tmpWeeks[weekstartDate]) tmpWeeks[weekstartDate] = {};
+			tmpWeeks[weekstartDate][key] = menu[key]
 		});
-		console.log(weeks);
+		setWeeks(tmpWeeks);
+		setOpen(true);
+	}
+
+	const handleDialogClose = () => {
+		setOpen(false);
 	}
 
 	// const drawFirstDayOfWeeks = (date) => {
@@ -87,6 +93,8 @@ const CreateMenu = () => {
 				</Grid>
 				<Calendar date={showDate} onClickCallback={selectDay} currentMenu={currentMenu} />
 			</Grid>
+			<Button onClick={() => printMenu(currentMenu)}>Print Menu</Button>
+			<MenuDialog weeks={weeks} handleDialogClose={handleDialogClose} open={open} />
 		</div >
 	);
 }

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Button, Dialog, Grid, Typography } from "@mui/material";
+import { Button, Grid, Stack } from "@mui/material";
 import { Drawer } from '@mui/material';
 import DishesGrid from '../components/DishesGrid';
 import Calendar from "../components/Calendar.jsx";
 import './CreateMenu.css';
 import MenuDialog from "../components/MenuDialog";
 
+// displays calendar where user can add dishes and print a menu
 const CreateMenu = () => {
 	const [currentDay, setCurrentDay] = useState(new Date());
 	const [drawerState, setDrawerState] = useState(false);
@@ -79,22 +80,24 @@ const CreateMenu = () => {
 			justifyContent: 'center',
 			marginTop: '10vh'
 		}}>
-			<Drawer anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
+			<Drawer sx={{ minWidth: '100px' }} anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
 				<DishesGrid currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDish} />
 			</Drawer>
 
-			<Grid container width={'70vw'} columns={7} marginTop={5}>
-				<Grid item xs={7} align={'center'}>
-					<h2>
-						<Button onClick={() => setShowDate(new Date(showDate.getFullYear(), showDate.getMonth() - 1, 1))}>⇐</Button>
-						{months[showDate.getMonth()]}
-						<Button onClick={() => setShowDate(new Date(showDate.getFullYear(), showDate.getMonth() + 1, 1))}>⇒</Button>
-					</h2>
+			<Stack alignItems={'center'} spacing={3}>
+				<Grid container width={'70vw'} columns={7} marginTop={5}>
+					<Grid item xs={7} align={'center'}>
+						<h2>
+							<Button onClick={() => setShowDate(new Date(showDate.getFullYear(), showDate.getMonth() - 1, 1))}>⇐</Button>
+							{months[showDate.getMonth()]}
+							<Button onClick={() => setShowDate(new Date(showDate.getFullYear(), showDate.getMonth() + 1, 1))}>⇒</Button>
+						</h2>
+					</Grid>
+					<Calendar date={showDate} onClickCallback={selectDay} currentMenu={currentMenu} />
 				</Grid>
-				<Calendar date={showDate} onClickCallback={selectDay} currentMenu={currentMenu} />
-			</Grid>
-			<Button onClick={() => printMenu(currentMenu)}>Print Menu</Button>
-			<MenuDialog weeks={weeks} handleDialogClose={handleDialogClose} open={open} />
+				<Button variant='contained' onClick={() => printMenu(currentMenu)}>Print Menu</Button>
+				<MenuDialog weeks={weeks} handleDialogClose={handleDialogClose} open={open} />
+			</Stack>
 		</div >
 	);
 }

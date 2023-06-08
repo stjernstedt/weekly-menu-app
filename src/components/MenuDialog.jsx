@@ -1,5 +1,6 @@
-import { Dialog, Divider, Paper, Stack, Typography } from "@mui/material";
+import { Dialog, Divider, Grid, Paper, Typography } from "@mui/material";
 
+// returns a menu for every week with dishes added
 const MenuDialog = ({ weeks, handleDialogClose, open }) => {
 
 	const displayMenu = () => {
@@ -11,22 +12,32 @@ const MenuDialog = ({ weeks, handleDialogClose, open }) => {
 			jsx.push(
 				<Typography variant='h5' key={date}>Week {date.getMonth() + 1}/{date.getDate()}</Typography>
 			)
+
 			for (let i = 0; i < 7; i++) {
 				let newDate = date;
-				newDate.setDate(date.getDate() + 1);
 				let dish;
 				weeks[week][newDate] ? dish = weeks[week][newDate] : console.log('null');
 				jsx.push(
 					<>
-						<Stack minWidth={'180px'} direction='row' justifyContent={'space-between'}>
-							<Typography variant='h6'>{(newDate.getMonth() + 1) + '/' + newDate.getDate()}</Typography>
-							<Typography variant='h6'>{weekDays[i]}</Typography>
-						</Stack>
-						<Typography margin={'5px'} variant='body1'>{dish ? dish.title : null}</Typography>
+						<Grid container columns={2} marginBottom={'20px'}>
+							<Grid item xs={1}>
+								<Typography color={'gray'} variant='h6'>{(newDate.getMonth() + 1) + '/' + newDate.getDate()}</Typography>
+							</Grid>
+							<Grid item xs={1}>
+								<Typography color={'gray'} align='right' variant='h6'>{weekDays[i]}</Typography>
+							</Grid>
+							<Grid item xs>
+								<Typography align='right' variant='h6'>{dish ? dish.title : null}</Typography>
+							</Grid>
+						</Grid>
 						<Divider />
 					</>
 				)
+				newDate.setDate(date.getDate() + 1);
 			}
+			jsx.push(
+				<Grid marginBottom={7} />
+			)
 		})
 
 		return jsx;
@@ -35,7 +46,9 @@ const MenuDialog = ({ weeks, handleDialogClose, open }) => {
 	return (
 		<Dialog onClose={handleDialogClose} open={open}>
 			<Paper sx={{ padding: '50px' }}>
-				{displayMenu()}
+				<Grid>
+					{displayMenu()}
+				</Grid>
 			</Paper>
 		</Dialog>
 	)

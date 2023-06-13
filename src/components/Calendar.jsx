@@ -1,7 +1,6 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 
 const Calendar = ({ date, onClickCallback, currentMenu }) => {
-
 	const getDaysInMonth = (year, month) => {
 		return month === 0 ? 31
 			: new Date(year, month + 1, 0).getDate()
@@ -14,11 +13,11 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 		return (
 			<Grid container>
 				<Grid item xs={1}>
-					<span>{date.getDate()}</span>
+					<span><Typography>{date.getDate()}</Typography></span>
 				</Grid>
 				<Grid item xs={12}>
 					{/* find how to update */}
-					<span id={date}>{currentMenu[date] ? currentMenu[date].title : null}</span>
+					<span id={date}><Typography>{currentMenu[date] ? currentMenu[date].title : null}</Typography></span>
 				</Grid>
 			</Grid>
 		)

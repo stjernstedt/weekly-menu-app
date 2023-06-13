@@ -80,12 +80,13 @@ const CreateMenu = () => {
 			justifyContent: 'center',
 			marginTop: '10vh'
 		}}>
-			<Drawer sx={{ minWidth: '100px' }} anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
+			<Drawer sx={{ minWidth: '10rem' }} anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
 				<DishesGrid currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDish} />
 			</Drawer>
 
 			<Stack alignItems={'center'} spacing={3}>
-				<Grid container width={'70vw'} columns={7} marginTop={5}>
+				{/* <Grid container width={'70vw'} columns={7} marginTop={5}> */}
+				<Grid container width={'80rem'} columns={7} marginTop={5}>
 					<Grid item xs={7} align={'center'}>
 						<h2>
 							<Button onClick={() => setShowDate(new Date(showDate.getFullYear(), showDate.getMonth() - 1, 1))}>⇐</Button>

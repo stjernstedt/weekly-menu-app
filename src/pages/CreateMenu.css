@@ -1,6 +1,8 @@
 .dayButton {
-	height: 4vw;
-	width: 100%;
+	/* height: 4vw; */
+	height: 5rem;
+	/* width: 100%; */
+	width: 10rem;
 }
 
 .dayButtonPreviousMonth {

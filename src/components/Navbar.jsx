@@ -4,14 +4,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BackupTableIcon from '@mui/icons-material/BackupTable';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import CreateIcon from '@mui/icons-material/Create';
+import { useState } from 'react';
 
 const Navbar = () => {
+	const drawerType = window.innerWidth < 500 ? 'temporary' : 'permanent';
+	const [open, setOpen] = useState(drawerType === 'temporary' ? false : true);
 
 	return (
 		<>
 			<AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 				<Toolbar>
-					<IconButton size='large' color='inherit' sx={{ mr: 2 }}>
+					<IconButton size='large' color='inherit' sx={{ mr: 2 }} onClick={() => setOpen(true)}>
 						<MenuIcon />
 					</IconButton>
 					<Button LinkComponent={Link} to='/#/' variant='text' color='inherit'>Weekly Menu</Button>
@@ -19,7 +22,8 @@ const Navbar = () => {
 					<Button color='inherit'>Login</Button>
 				</Toolbar>
 			</AppBar >
-			<Drawer variant='permanent' sx={{ flexShrink: 0 }}>
+			{/* <Drawer variant='permanent' sx={{ flexShrink: 0 }}> */}
+			<Drawer open={open} variant={drawerType} sx={{ flexShrink: 0 }} onClose={() => setOpen(false)}>
 				<Toolbar />
 				<List>
 					<ListItemButton LinkComponent={Link} to='/#/createrecipe'>

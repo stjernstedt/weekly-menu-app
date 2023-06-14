@@ -3,7 +3,6 @@ import { Button, Container, Grid, Stack } from "@mui/material";
 import { Drawer } from '@mui/material';
 import DishesGrid from '../components/DishesGrid';
 import Calendar from "../components/Calendar.jsx";
-import './CreateMenu.css';
 import MenuDialog from "../components/MenuDialog";
 
 // displays calendar where user can add dishes and print a menu

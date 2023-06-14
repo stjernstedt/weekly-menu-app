@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Grid, Stack } from "@mui/material";
+import { Button, Container, Grid, Stack } from "@mui/material";
 import { Drawer } from '@mui/material';
 import DishesGrid from '../components/DishesGrid';
 import Calendar from "../components/Calendar.jsx";
@@ -75,18 +75,12 @@ const CreateMenu = () => {
 	// }
 
 	return (
-		<div style={{
-			display: 'flex',
-			justifyContent: 'center',
-			marginTop: '10vh'
-		}}>
+		<Container maxWidth={'100%'}>
 			<Drawer sx={{ minWidth: '10rem' }} anchor='right' open={drawerState} onClose={() => toggleDrawer(false)}>
 				<DishesGrid currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDish} />
 			</Drawer>
-
-			<Stack alignItems={'center'} spacing={3}>
-				{/* <Grid container width={'70vw'} columns={7} marginTop={5}> */}
-				<Grid container width={'80rem'} columns={7} marginTop={5}>
+			<Stack alignItems={'center'} spacing={3} marginTop={5}>
+				<Grid container width={'70%'} columns={7} marginTop={5} border={1}>
 					<Grid item xs={7} align={'center'}>
 						<h2>
 							<Button onClick={() => setShowDate(new Date(showDate.getFullYear(), showDate.getMonth() - 1, 1))}>⇐</Button>
@@ -99,7 +93,7 @@ const CreateMenu = () => {
 				<Button variant='contained' onClick={() => printMenu(currentMenu)}>Print Menu</Button>
 				<MenuDialog weeks={weeks} handleDialogClose={handleDialogClose} open={open} />
 			</Stack>
-		</div >
+		</Container >
 	);
 }
 

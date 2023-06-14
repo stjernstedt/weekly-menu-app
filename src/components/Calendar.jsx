@@ -1,4 +1,15 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, styled } from "@mui/material";
+
+const CalendarButton = styled(Button)({
+	height: '5rem',
+	padding: '0px',
+	minWidth: '0px',
+	width: '100%',
+})
+
+const CalendarPreviousMonthButton = styled(CalendarButton)({
+	backgroundColor: 'lightgray',
+})
 
 const Calendar = ({ date, onClickCallback, currentMenu }) => {
 	const getDaysInMonth = (year, month) => {
@@ -23,9 +34,6 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 		)
 	}
 
-	let monthClass = 'dayButton';
-	let previousMonthClass = 'dayButtonPreviousMonth dayButton';
-
 	let arr = [];
 	// if the 1st is not monday, render previous month's days
 	if (date.getDay() !== 1) {
@@ -41,9 +49,9 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 			arr.push({ [callbackDate]: '1' });
 			jsx.unshift(
 				<Grid item key={'' + date.getFullYear() + (date.getMonth() - 1) + day} padding={1} xs={1}>
-					<Button className={previousMonthClass} variant='outlined' onClick={() => onClickCallback(callbackDate)}>
-						{dayJsx(callbackDate)}
-					</Button>
+					<CalendarPreviousMonthButton variant='outlined' onClick={() => onClickCallback(callbackDate)}>
+						<Typography variant='h1'>{dayJsx(callbackDate)}</Typography>
+					</CalendarPreviousMonthButton>
 				</Grid>
 			);
 		}
@@ -55,9 +63,9 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 		arr.push({ [callbackDate]: '1' });
 		jsx.push(
 			<Grid item key={'' + date.getFullYear() + (date.getMonth()) + i} padding={1} xs={1}>
-				<Button className={monthClass} variant='outlined' onClick={() => onClickCallback(callbackDate)}>
+				<CalendarButton variant='outlined' onClick={() => onClickCallback(callbackDate)}>
 					{dayJsx(callbackDate)}
-				</Button>
+				</CalendarButton>
 			</Grid>
 		);
 	}

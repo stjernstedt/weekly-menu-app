@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material';
 
 let theme = createTheme();
-theme = responsiveFontSizes(theme);
+// theme = responsiveFontSizes(theme);
 
 const App = () => {
   document.title = 'Weekly Menu';

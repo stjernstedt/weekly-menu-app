@@ -26,17 +26,17 @@ const DishesGrid = ({ currentDay, toggleDrawer, addDishCallback }) => {
 	}, [])
 
 	return (
-		<Grid container spacing={5} justifyContent={'center'} marginTop={'10vh'}>
+		<Grid container columns={6} spacing={5} marginTop={'10vh'} paddingX={'5vh'}>
 			{dishes?.length > 0
 				? (
 					<>
-						<Button onClick={() => { updateDishes() }}>Show all</Button>
 						{currentDay && toggleDrawer ? dishes.map((dish) => (
 							<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDishCallback} />
 						)) :
 							dishes.map((dish) => (
 								<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} />
 							))}
+						<Grid item mobile={6} align={'center'}><Button onClick={() => { updateDishes() }}>Show all</Button></Grid>
 					</>
 				) : (
 					<div className='empty'>

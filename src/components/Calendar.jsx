@@ -23,12 +23,11 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 	const dayJsx = (date) => {
 		return (
 			<Grid container>
-				<Grid item xs={1}>
-					<span><Typography>{date.getDate()}</Typography></span>
+				<Grid item mobile={1}>
+					<span><Typography variant='body1'>{date.getDate()}</Typography></span>
 				</Grid>
-				<Grid item xs={12}>
-					{/* find how to update */}
-					<span id={date}><Typography>{currentMenu[date] ? currentMenu[date].title : null}</Typography></span>
+				<Grid item mobile={12}>
+					<span id={date}><Typography variant='body2'>{currentMenu[date] ? currentMenu[date].title : null}</Typography></span>
 				</Grid>
 			</Grid>
 		)
@@ -48,9 +47,9 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 			let callbackDate = new Date(date.getFullYear(), date.getMonth() - 1, + day)
 			arr.push({ [callbackDate]: '1' });
 			jsx.unshift(
-				<Grid item key={'' + date.getFullYear() + (date.getMonth() - 1) + day} padding={1} xs={1}>
+				<Grid item key={'' + date.getFullYear() + (date.getMonth() - 1) + day} padding={1} mobile={1}>
 					<CalendarPreviousMonthButton variant='outlined' onClick={() => onClickCallback(callbackDate)}>
-						<Typography variant='h1'>{dayJsx(callbackDate)}</Typography>
+						{dayJsx(callbackDate)}
 					</CalendarPreviousMonthButton>
 				</Grid>
 			);
@@ -62,7 +61,7 @@ const Calendar = ({ date, onClickCallback, currentMenu }) => {
 		let callbackDate = new Date(date.getFullYear(), date.getMonth(), + i)
 		arr.push({ [callbackDate]: '1' });
 		jsx.push(
-			<Grid item key={'' + date.getFullYear() + (date.getMonth()) + i} padding={1} xs={1}>
+			<Grid item key={'' + date.getFullYear() + (date.getMonth()) + i} padding={1} mobile={1}>
 				<CalendarButton variant='outlined' onClick={() => onClickCallback(callbackDate)}>
 					{dayJsx(callbackDate)}
 				</CalendarButton>

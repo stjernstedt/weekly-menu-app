@@ -7,23 +7,13 @@ import CreateIcon from '@mui/icons-material/Create';
 import { useState } from 'react';
 
 const Navbar = () => {
-	const drawerType = window.innerWidth < 500 ? 'temporary' : 'permanent';
-	const [open, setOpen] = useState(drawerType === 'temporary' ? false : true);
+	// const drawerType = window.innerWidth < 500 ? 'temporary' : 'permanent';
+	// const [open, setOpen] = useState(drawerType === 'temporary' ? false : true);
+	const [open, setOpen] = useState(false);
 
-	return (
-		<>
-			<AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-				<Toolbar>
-					<IconButton size='large' color='inherit' sx={{ mr: 2 }} onClick={() => setOpen(true)}>
-						<MenuIcon />
-					</IconButton>
-					<Button LinkComponent={Link} to='/#/' variant='text' color='inherit'>Weekly Menu</Button>
-					<Typography variant='h6' sx={{ flexGrow: 1 }}></Typography>
-					<Button color='inherit'>Login</Button>
-				</Toolbar>
-			</AppBar >
-			{/* <Drawer variant='permanent' sx={{ flexShrink: 0 }}> */}
-			<Drawer open={open} variant={drawerType} sx={{ flexShrink: 0 }} onClose={() => setOpen(false)}>
+	const drawerContent = () => {
+		return (
+			<>
 				<Toolbar />
 				<List>
 					<ListItemButton LinkComponent={Link} to='/#/createrecipe'>
@@ -45,6 +35,29 @@ const Navbar = () => {
 						<ListItemText primary='Create Menu' />
 					</ListItemButton>
 				</List>
+			</>
+		)
+	}
+
+	return (
+		<>
+			<AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+				<Toolbar>
+					<IconButton size='large' color='inherit' sx={{ mr: 2 }} onClick={() => setOpen(true)}>
+						<MenuIcon />
+					</IconButton>
+					<Button LinkComponent={Link} to='/#/' variant='text' color='inherit'>Weekly Menu</Button>
+					<Typography variant='h6' sx={{ flexGrow: 1 }}></Typography>
+					<Button color='inherit'>Login</Button>
+				</Toolbar>
+			</AppBar >
+			{/* <Drawer variant='permanent' sx={{ flexShrink: 0 }}> */}
+			{/* <Drawer open={open} variant={drawerType} sx={{ flexShrink: 0 }} onClose={() => setOpen(false)}> */}
+			<Drawer open={open} variant='permanent' sx={{ flexShrink: 0, display: { mobile: 'none', desktop: 'block' } }} onClose={() => setOpen(false)}>
+				{drawerContent()}
+			</Drawer>
+			<Drawer open={open} variant='temporary' sx={{ flexShrink: 0, display: { mobile: 'block', desktop: 'none' } }} onClose={() => setOpen(false)}>
+				{drawerContent()}
 			</Drawer>
 		</>
 	);

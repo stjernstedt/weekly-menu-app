@@ -4,13 +4,13 @@ import React from "react";
 const DishCard = ({ dish, updateDishes, currentDay, toggleDrawer, addDishCallback }) => {
 
 	return (
-		<Grid item xs={2}>
+		<Grid item mobile={3} desktop={2}>
 			<Card>
 				<CardContent>
 					<Typography variant="h5">
 						{dish.title}
 					</Typography>
-					<Typography variant="h8">
+					<Typography variant="body1">
 						Ingredients: {dish.ingredients.map(ingredient => {
 							return (
 								<Button key={ingredient} onClick={() => updateDishes(ingredient)}>{ingredient}</Button>

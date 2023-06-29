@@ -40,7 +40,7 @@ const DishesGrid = ({ currentDay, toggleDrawer, addDishCallback }) => {
 					</>
 				) : (
 					<div className='empty'>
-						<CircularProgress />
+						<CircularProgress align='center' />
 						{/* <h2>No dishes found</h2> */}
 					</div>
 				)}

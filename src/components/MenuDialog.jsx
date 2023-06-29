@@ -18,25 +18,25 @@ const MenuDialog = ({ weeks, handleDialogClose, open }) => {
 				let dish;
 				weeks[week][newDate] ? dish = weeks[week][newDate] : console.log('null');
 				jsx.push(
-					<>
+					<div key={Math.random() + i}>
 						<Grid container columns={2} marginBottom={'20px'}>
-							<Grid item xs={1}>
+							<Grid item mobile={1}>
 								<Typography color={'gray'} variant='h6'>{(newDate.getMonth() + 1) + '/' + newDate.getDate()}</Typography>
 							</Grid>
-							<Grid item xs={1}>
+							<Grid item mobile={1}>
 								<Typography color={'gray'} align='right' variant='h6'>{weekDays[i]}</Typography>
 							</Grid>
-							<Grid item xs>
+							<Grid item mobile={2}>
 								<Typography align='right' variant='h6'>{dish ? dish.title : null}</Typography>
 							</Grid>
 						</Grid>
 						<Divider />
-					</>
+					</div>
 				)
 				newDate.setDate(date.getDate() + 1);
 			}
 			jsx.push(
-				<Grid marginBottom={7} />
+				<Grid key={Math.random()} marginBottom={7} />
 			)
 		})
 
@@ -45,8 +45,8 @@ const MenuDialog = ({ weeks, handleDialogClose, open }) => {
 
 	return (
 		<Dialog onClose={handleDialogClose} open={open}>
-			<Paper sx={{ padding: '50px' }}>
-				<Grid>
+			<Paper >
+				<Grid margin={'5%'}>
 					{displayMenu()}
 				</Grid>
 			</Paper>

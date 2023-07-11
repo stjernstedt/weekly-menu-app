@@ -53,7 +53,7 @@ const CreateRecipe = () => {
 	}
 
 	return (
-		<Container maxWidth='md'>
+		<Container maxWidth='desktop'>
 			<Stack maxWidth='50%' margin='30vh auto' >
 				<TextField onChange={onTitleChange} helperText='Title' variant='standard' />
 				<Autocomplete

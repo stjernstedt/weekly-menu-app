@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid } from '@mui/material';
+import { Button, CircularProgress, Container, Grid } from '@mui/material';
 import { useState, useEffect } from 'react';
 import DishCard from './DishCard.jsx';
 
@@ -26,25 +26,27 @@ const DishesGrid = ({ currentDay, toggleDrawer, addDishCallback }) => {
 	}, [])
 
 	return (
-		<Grid container columns={6} spacing={5} marginTop={'10vh'} paddingX={'5vh'}>
-			{dishes?.length > 0
-				? (
-					<>
-						{currentDay && toggleDrawer ? dishes.map((dish) => (
-							<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDishCallback} />
-						)) :
-							dishes.map((dish) => (
-								<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} />
-							))}
-						<Grid item mobile={6} align={'center'}><Button onClick={() => { updateDishes() }}>Show all</Button></Grid>
-					</>
-				) : (
-					<div className='empty'>
-						<CircularProgress align='center' />
-						{/* <h2>No dishes found</h2> */}
-					</div>
-				)}
-		</Grid>
+		<Container maxWidth={'desktop'}>
+			<Grid container columns={6} spacing={5} marginTop={'10vh'} paddingX={'5vh'}>
+				{dishes?.length > 0
+					? (
+						<>
+							{currentDay && toggleDrawer ? dishes.map((dish) => (
+								<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} currentDay={currentDay} toggleDrawer={toggleDrawer} addDishCallback={addDishCallback} />
+							)) :
+								dishes.map((dish) => (
+									<DishCard dish={dish} key={dish._id} updateDishes={updateDishes} />
+								))}
+							<Grid item mobile={6} align={'center'}><Button onClick={() => { updateDishes() }}>Show all</Button></Grid>
+						</>
+					) : (
+						<div className='empty'>
+							<CircularProgress align='center' />
+							{/* <h2>No dishes found</h2> */}
+						</div>
+					)}
+			</Grid>
+		</Container>
 	)
 }
 

@@ -13,7 +13,7 @@ const Navbar = () => {
 
 	const drawerContent = () => {
 		return (
-			<>
+			<div onClick={() => setOpen(false)}>
 				<Toolbar />
 				<List>
 					<ListItemButton LinkComponent={Link} to='/#/createrecipe'>
@@ -35,7 +35,7 @@ const Navbar = () => {
 						<ListItemText primary='Create Menu' />
 					</ListItemButton>
 				</List>
-			</>
+			</div>
 		)
 	}
 
